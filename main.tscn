@@ -1,0 +1,27 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://game.gd" type="Script" id=2]
+
+[sub_resource type="SpatialMaterial" id=1]
+vertex_color_use_as_albedo = true
+
+[sub_resource type="CubeMesh" id=2]
+material = SubResource( 1 )
+size = Vector3( 1, 1, 1 )
+
+[sub_resource type="MultiMesh" id=3]
+color_format = 2
+transform_format = 1
+instance_count = 1
+mesh = SubResource( 2 )
+transform_array = PoolVector3Array( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0 )
+color_array = PoolColorArray( 1, 1, 1, 1 )
+
+[node name="main" type="Spatial"]
+
+[node name="game" type="MultiMeshInstance" parent="."]
+multimesh = SubResource( 3 )
+script = ExtResource( 2 )
+
+[node name="camera" type="Camera" parent="."]
+transform = Transform( 1, 0, 0, 0, -1.62921e-07, 1, 0, -1, -1.62921e-07, 25, 50, 25 )
