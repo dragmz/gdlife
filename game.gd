@@ -94,8 +94,10 @@ class Map:
 			data[i].life = max(0, data[i].life - 1)
 		
 var map : Map
+var started
 
 func _ready():
+	started = OS.get_system_time_msecs()
 	map = Map.new(50, 50)
 	self.multimesh.instance_count = map.w * map.h
 
@@ -110,17 +112,24 @@ func _ready():
 			
 			index += 1
 
+var counter : int
 var frame : int
 
 func _process(_delta):
 	frame += 1
-	if frame == 10:
+	if frame == 1000:
+		var elapsed = OS.get_system_time_msecs() - started
+		print("Result: ", elapsed)
+		get_tree().quit()
+		return
+		
+	counter += 1
+	if counter == 10:
 		map.put(25, 25, true)
 		map.put(24, 25, true)
 		map.put(26, 25, true)
 		map.put(25, 24, true)
-
-		frame = 0
+		counter = 0
 
 	map.process()
 	

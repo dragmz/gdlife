@@ -19,6 +19,10 @@ config/name="gdlife"
 run/main_scene="res://main.tscn"
 config/icon="res://icon.png"
 
+[display]
+
+window/vsync/use_vsync=false
+
 [rendering]
 
 vram_compression/import_etc=true
